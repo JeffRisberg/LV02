@@ -17,7 +17,7 @@ class TestController extends Controller
      */
     public function getShow($id)
     {
-        echo 'show method';
+        return view('testShow',['name' => "Jeff Risberg"]);
     }
 
     /**
