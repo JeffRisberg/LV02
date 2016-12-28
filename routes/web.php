@@ -19,6 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('foo', function () {
-    return view('foo');
+Route::get('/books', function () {
+    return view('bookList');
 });
+
+Route::resource('my', 'MyController');
+
+Route::get('test', 'TestController@getIndex');
+Route::get('test/{id}', 'TestController@getShow');
