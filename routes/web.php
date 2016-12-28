@@ -28,4 +28,7 @@ Route::resource('my', 'MyController');
 Route::get('test', 'TestController@getIndex');
 Route::get('test/{id}', 'TestController@getShow');
 
-Route::get('view-records','StudViewController@index');
+Route::get('view-records', 'StudViewController@index');
+
+Route::get('insert', 'StudInsertController@insertform');
+Route::post('create', 'StudInsertController@insert');
