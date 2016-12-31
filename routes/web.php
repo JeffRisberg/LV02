@@ -32,3 +32,11 @@ Route::get('view-records', 'StudViewController@index');
 
 Route::get('insert', 'StudInsertController@insertform');
 Route::post('create', 'StudInsertController@insert');
+
+/*  Vue.js  */
+/*  Route::group(['middleware' => ['web']], function() {  */
+/*  CITATION: https://laracasts.com/discuss/channels/laravel/middleware-web  */
+Route::get('/vuejscrud', 'BlogController@vueCrud');
+Route::resource('vueitems','BlogController');  /*  spawn a bunch of routes and actions off '/vueitems'  */
+/*  CITATION - https://laravel.com/docs/5.3/controllers#resource-controllers  */
+
