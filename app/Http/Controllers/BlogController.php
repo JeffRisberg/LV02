@@ -1,34 +1,23 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Blog;
-use App\Http\Requests;
-use Validator;
-use Response;
-use Illuminate\Support\Facades\Input;
+use App\Post;
+use App\Comment;
 
 class BlogController extends Controller
 {
-    public function vueCrud(){
-      return view('/vuejscrud/index');
-//    return view('index');
-    }
-
     public function index()
     {
-        $items = Blog::latest()->paginate(6);
-        $response = [
-          'pagination' => [
-            'total' => $items->total(),
-            'per_page' => $items->perPage(),
-            'current_page' => $items->currentPage(),
-            'last_page' => $items->lastPage(),
-            'from' => $items->firstItem(),
-            'to' => $items->lastItem()
-          ],
-          'data' => $items
-        ];
-        return response()->json($response);
+        $items = Post::all();
+
+        return view("posts", array('posts' => $items));
+    }
+
+    public function show($id)
+    {
+        //return response()->json($response);
     }
 
     public function store(Request $request)
@@ -37,7 +26,7 @@ class BlogController extends Controller
           'title' => 'required',
           'description' => 'required',
         ]);
-        $create = Blog::create($request->all());
+        $create = Post::create($request->all());
         return response()->json($create);
     }
 
@@ -47,13 +36,13 @@ class BlogController extends Controller
         'title' => 'required',
         'description' => 'required',
       ]);
-      $edit = Blog::find($id)->update($request->all());
+      $edit = Post::find($id)->update($request->all());
       return response()->json($edit);
     }
     
     public function destroy($id)
     {
-        Blog::find($id)->delete();
+        Post::find($id)->delete();
         return response()->json(['done']);
     }
 }
